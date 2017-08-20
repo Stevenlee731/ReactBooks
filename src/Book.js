@@ -1,13 +1,22 @@
 import React from 'react'
 
-const Book = ({cover, authors, title}) => {
+const Book = ({book, handleMoveBook}) => {
+  const cover = book.imageLinks.thumbnail
+  const shelf = book.shelf
+  const authors = book.authors
+  const title = book.title
+
+  let handleChange = event => {
+    handleMoveBook(book, event.target.value)
+  }
+
   return (
     <li>
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${cover})` }}></div>
           <div className="book-shelf-changer">
-            <select>
+            <select value={shelf} onChange={event => handleChange(event)}>
               <option value="none" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
@@ -17,7 +26,7 @@ const Book = ({cover, authors, title}) => {
           </div>
         </div>
         <div className="book-title">{title}</div>
-        <div className="book-authors">{authors}</div>
+        {authors.map((author, i) => <div key={i} className="book-authors">{author}</div>)}
       </div>
     </li>
   )

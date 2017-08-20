@@ -16,10 +16,22 @@ class BooksApp extends Component {
       search: [],
       term: '',
     };
+
+    this.handleMoveBook = this.handleMoveBook.bind(this)
   }
 
   componentDidMount() {
     BooksAPI.getAll().then(books => this.setState({books}))
+  }
+
+  handleMoveBook = (book, shelf) => {
+    console.log('book', book, 'shelf', shelf)
+    BooksAPI.update(book, shelf).then(() => {
+      book.shelf = shelf
+      this.setState({book: [
+        ...this.state.books.filter(book => book.id !== book.id), book
+      ]})
+    })
   }
 
   render() {
@@ -37,6 +49,7 @@ class BooksApp extends Component {
               currentlyReading={currentlyReading}
               wantToRead={wantToRead}
               read={read}
+              handleMoveBook={this.handleMoveBook}
               />
             <div className="open-search">
               <Link to="/search">Add a book</Link>
