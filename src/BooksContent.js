@@ -1,5 +1,6 @@
 import React from 'react';
-import BookShelf from './BookShelf'
+import BookShelf from './BookShelf';
+import PropTypes from 'prop-types';
 
 const BooksContent = ({currentlyReading, wantToRead, read, handleMoveBook}) => {
   return (
@@ -24,7 +25,10 @@ const BooksContent = ({currentlyReading, wantToRead, read, handleMoveBook}) => {
 }
 
 BooksContent.propTypes = {
-
+  currentlyReading: PropTypes.array.isRequired,
+  read: PropTypes.array.isRequired,
+  wantToRead: PropTypes.array.isRequired,
+  handleMoveBook: PropTypes.func.isRequired,
 };
 
 export default BooksContent
