@@ -3,7 +3,7 @@ import React from 'react'
 const Book = ({book, handleMoveBook}) => {
   const cover = book.imageLinks.thumbnail
   const shelf = book.shelf
-  const authors = book.authors
+  const authors = book.authors || null
   const title = book.title
 
   let handleChange = event => {
@@ -26,7 +26,7 @@ const Book = ({book, handleMoveBook}) => {
           </div>
         </div>
         <div className="book-title">{title}</div>
-        {authors.map((author, i) => <div key={i} className="book-authors">{author}</div>)}
+        {authors && authors.map((author, i) => <div key={i} className="book-authors">{author}</div>)}
       </div>
     </li>
   )

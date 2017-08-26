@@ -31,18 +31,16 @@ class BooksApp extends Component {
       book.shelf = shelf
       this.setState({book: [
         ...this.state.books.filter(book => book.id !== book.id), book
-      ]})
+      ]}, this.componentDidMount())
     })
   }
 
   handleSearch (term) {
-    if(term) {
+    if (term) {
       BooksAPI.search(term, 20).then(searchedBooks => {
-        console.log('searchedBooks', searchedBooks)
         this.setState({search: searchedBooks})
-        console.log('state', this.state)
       })
-    }
+    } 
   }
 
   handleInput = (term) => {
@@ -77,10 +75,12 @@ class BooksApp extends Component {
               <BooksSearch
                 handleSearch={this.handleSearch}
                 handleInput={this.handleInput}
+                term={this.state.term}
               />
               <SearchResults
                 handleMoveBook={this.handleMoveBook}
                 searchedBooks={searchedBooks}
+                term={this.state.term}
               />
             </div>
             )}/>

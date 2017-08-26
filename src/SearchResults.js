@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Book from './Book'
 
-const SearchResults = ({searchedBooks, handleMoveBook}) => {
+const SearchResults = ({searchedBooks, handleMoveBook, term}) => {
   return (
     <div className="search-books-results">
       <ol className="books-grid">
-        {searchedBooks.map(book => {
+        {searchedBooks.length > 1 && searchedBooks.map(book => {
           return (
             <Book key={book.id} handleMoveBook={handleMoveBook} book={book}/>
           )
