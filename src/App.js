@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import _ from 'lodash';
-import { Link } from 'react-router-dom'
-import { Route } from 'react-router-dom'
-import BooksSearch from './BooksSearch'
-import SearchResults from './SearchResults'
-import BooksHeader from './BooksHeader'
-import BooksContent from './BooksContent'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
+import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import BooksSearch from './BooksSearch';
+import SearchResults from './SearchResults';
+import BooksHeader from './BooksHeader';
+import BooksContent from './BooksContent';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
 
 class BooksApp extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class BooksApp extends Component {
       term: '',
     };
     this.handleMoveBook = this.handleMoveBook.bind(this)
-    this.handleSearch = _.debounce(this.handleSearch.bind(this), 500)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   componentDidMount() {
@@ -31,20 +31,20 @@ class BooksApp extends Component {
       book.shelf = shelf
       this.setState({book: [
         ...this.state.books.filter(book => book.id !== book.id), book
-      ]}, this.componentDidMount())
+      ]}, this.componentDidMount());
     })
   }
 
   handleSearch (term) {
     if (term) {
       BooksAPI.search(term, 20).then(searchedBooks => {
-        this.setState({search: searchedBooks})
-      })
-    } 
+        this.setState({search: searchedBooks});
+      });
+    }
   }
 
-  handleInput = (term) => {
-    term ? this.setState({term: term}, this.handleSearch(term)) : this.setState({term: ''})
+  handleInput (term) {
+    term ? this.setState({term: term}, this.handleSearch(term)) : this.setState({term: ''});
   }
 
   render() {
@@ -63,8 +63,7 @@ class BooksApp extends Component {
               currentlyReading={currentlyReading}
               wantToRead={wantToRead}
               read={read}
-              handleMoveBook={this.handleMoveBook}
-              />
+              handleMoveBook={this.handleMoveBook} />
             <div className="open-search">
               <Link to="/search">Add a book</Link>
             </div>

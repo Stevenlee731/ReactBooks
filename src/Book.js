@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Book = ({book, handleMoveBook}) => {
-  const cover = book.imageLinks.thumbnail
+
   const shelf = book.shelf
   const authors = book.authors || null
   const title = book.title
@@ -14,7 +14,7 @@ const Book = ({book, handleMoveBook}) => {
     <li>
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${cover})` }}></div>
+          <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : 'http://dvepublishing.com/images/cover_not_available.jpg'})` }}></div>
           <div className="book-shelf-changer">
             <select value={shelf} onChange={event => handleChange(event)}>
               <option value="none" disabled>Move to...</option>
