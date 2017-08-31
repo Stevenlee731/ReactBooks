@@ -6,17 +6,13 @@ const Book = ({book, handleMoveBook}) => {
   const authors = book.authors || null
   const title = book.title
 
-  let handleChange = event => {
-    handleMoveBook(book, event.target.value)
-  }
-
   return (
     <li>
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : 'http://dvepublishing.com/images/cover_not_available.jpg'})` }}></div>
           <div className="book-shelf-changer">
-            <select value={shelf} onChange={event => handleChange(event)}>
+            <select value={shelf} onChange={event => handleMoveBook(book, event.target.value)}>
               <option value="none" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>

@@ -18,19 +18,21 @@ class BooksApp extends Component {
       search: [],
       term: '',
     };
-    this.handleMoveBook = this.handleMoveBook.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
+    
+    this.handleMoveBook = this.handleMoveBook.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   componentDidMount() {
     BooksAPI.getAll().then(books => this.setState({books}))
   }
 
-  handleMoveBook (book, shelf) {
-    BooksAPI.update(book, shelf).then(() => {
-      book.shelf = shelf
+  handleMoveBook (selectedBook, shelf) {
+    BooksAPI.update(selectedBook, shelf).then(() => {
+      selectedBook.shelf = shelf
       this.setState({book: [
-        ...this.state.books.filter(book => book.id !== book.id), book
+        ...this.state.books.filter(storedBook => storedBook.id !== selectedBook.id), selectedBook
       ]}, this.componentDidMount());
     })
   }
