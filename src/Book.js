@@ -5,7 +5,7 @@ const Book = ({book, handleMoveBook}) => {
   const shelf = book.shelf
   const authors = book.authors || null
   const title = book.title
-
+/* got some help from the slack channel on the thumbnail issue */
   return (
     <li>
       <div className="book">
